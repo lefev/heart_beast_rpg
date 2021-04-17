@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tree.png-f67ef3e4b07cb0a734b00e236a73e3b2.stex"
+path="res://.import/bush.png-680442ce90764324f3d5f5d0a3354b7e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/tree.png"
-dest_files=[ "res://.import/tree.png-f67ef3e4b07cb0a734b00e236a73e3b2.stex" ]
+source_file="res://scenes/assets/environment/bush.png"
+dest_files=[ "res://.import/bush.png-680442ce90764324f3d5f5d0a3354b7e.stex" ]
 
 [params]
 

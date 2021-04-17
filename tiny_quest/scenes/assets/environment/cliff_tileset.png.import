@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/large_shadow.png-f2c688bdbebac36861bf611a59a9e5b9.stex"
+path="res://.import/cliff_tileset.png-bb8c041717bfea8ac975589a193e1ee1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shadows/large_shadow.png"
-dest_files=[ "res://.import/large_shadow.png-f2c688bdbebac36861bf611a59a9e5b9.stex" ]
+source_file="res://scenes/assets/environment/cliff_tileset.png"
+dest_files=[ "res://.import/cliff_tileset.png-bb8c041717bfea8ac975589a193e1ee1.stex" ]
 
 [params]
 

@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="tiny_quest"
 config/description="A little game based on the HeartBeast RPG Series.
 Source: https://www.youtube.com/watch?v=mAbG8Oi-SvQ&list=PL9FzW-m48fn2SlrW0KoLT4n5egNdX-W9a"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/main/Main.tscn"
 
 [display]
 
