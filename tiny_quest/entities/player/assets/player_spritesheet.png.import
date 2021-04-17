@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bat.png-533dbb668b2740d388d03679d182ad97.stex"
+path="res://.import/player_spritesheet.png-b04d66b28630b3ba5ef6e73b42b804e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bat.png"
-dest_files=[ "res://.import/bat.png-533dbb668b2740d388d03679d182ad97.stex" ]
+source_file="res://entities/player/assets/player_spritesheet.png"
+dest_files=[ "res://.import/player_spritesheet.png-b04d66b28630b3ba5ef6e73b42b804e7.stex" ]
 
 [params]
 
