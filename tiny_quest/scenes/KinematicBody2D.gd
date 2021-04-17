@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 # Constants
 # Movement
-const MAX_SPEED : float = 100.0
-const ACCELERATION : float = 10.0
-const FRICTION : float = 10.0
+const MAX_SPEED : float = 80.0
+const ACCELERATION : float = 600.0
+const FRICTION : float = 600.0
 
 # vars
 var velocity : Vector2 = Vector2.ZERO
@@ -20,10 +20,10 @@ func _get_movement_input() -> Vector2:
 # processes
 func _physics_process(delta: float) -> void:
 	var movement_input : Vector2 = _get_movement_input()
+	
 	if movement_input != Vector2.ZERO:
-		velocity += movement_input * ACCELERATION * delta
-		velocity = velocity.clamped(MAX_SPEED * delta)
+		velocity = velocity.move_toward(movement_input * MAX_SPEED, ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	move_and_collide(velocity)
+	move_and_collide(velocity * delta)
