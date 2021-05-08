@@ -21,10 +21,12 @@ var velocity_roll : Vector2 = Vector2.LEFT
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_tree : AnimationTree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
+onready var sword_hitbox : Area2D = $HitboxPivot/SwordHitBox
 
 
 func _ready()  -> void:
 	animation_tree.active = true
+	sword_hitbox.knockback = velocity_roll
 
 
 func _physics_process(delta: float) -> void:
@@ -49,6 +51,7 @@ func move_state(delta : float) -> void:
 	var movement_input : Vector2 = _get_movement_input()
 	
 	if movement_input != Vector2.ZERO:
+		sword_hitbox.knockback = movement_input
 		velocity_roll = movement_input
 		animation_tree.set("parameters/idle/blend_position", movement_input)
 		animation_tree.set("parameters/run/blend_position", movement_input)
