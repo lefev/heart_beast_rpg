@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		MOVE:
 			move_state(delta)
-			
 		ROLL:
 			pass
 			
@@ -66,11 +65,13 @@ func move_state(delta : float) -> void:
 		current_state = ATTACK
 	pass
 
+
 func attack_state(_delta : float) -> void:
 	# Stop sliding while attacking
 	velocity = Vector2.ZERO
 	animation_state.travel("attack")
 	pass
+
 
 func attack_animation_finished() -> void:
 	current_state = MOVE
