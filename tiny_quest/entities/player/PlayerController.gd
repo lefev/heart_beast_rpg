@@ -70,6 +70,7 @@ func move_state(delta : float) -> void:
 	
 	if Input.is_action_just_pressed("roll"):
 		current_state = ROLL
+
 	
 	if Input.is_action_just_pressed("attack"):
 		current_state = ATTACK
@@ -102,8 +103,7 @@ func move() -> void:
 	velocity = move_and_slide(velocity)
 
 
-func _on_HurtBox_area_entered(area: Area2D) -> void:
+func _on_HurtBox_area_entered(_area: Area2D) -> void:
 	stats.health -= 1
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()
-	print_debug(stats.health)
