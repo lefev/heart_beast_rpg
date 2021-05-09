@@ -15,6 +15,8 @@ var current_state = IDLE
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var detection_zone = $DetectionZone
+onready var hurtbox = $HurtBox
+
 var velocity = Vector2.ZERO
 var knockback = Vector2.ZERO
 
@@ -54,6 +56,7 @@ func seek_player() -> void:
 func _on_HurtBox_area_entered(area) -> void:
 	stats.health -= area.damage
 	knockback = area.knockback * 120
+	hurtbox.create_hit_effect()
 
 
 func _on_Stats_no_health() -> void:
