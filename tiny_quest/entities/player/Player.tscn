@@ -605,12 +605,13 @@ radius = 15.6616
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
+ROLL_SPEED = 112.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -10 )
 texture = ExtResource( 1 )
 hframes = 60
-frame = 12
+frame = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
@@ -637,12 +638,11 @@ anims/run_up = SubResource( 13 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 33 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 34 )
-parameters/attack/blend_position = Vector2( 0, 0 )
-parameters/idle/blend_position = Vector2( 0, 0 )
-parameters/roll/blend_position = Vector2( -0.00154561, 0 )
-parameters/run/blend_position = Vector2( 0, 0 )
+parameters/attack/blend_position = Vector2( 0, 1 )
+parameters/idle/blend_position = Vector2( 0, 1 )
+parameters/roll/blend_position = Vector2( 0, 1 )
+parameters/run/blend_position = Vector2( 0, 1 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( -1.9865, 4.63516 )

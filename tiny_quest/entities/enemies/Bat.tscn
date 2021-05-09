@@ -49,7 +49,7 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "Animation"
-frame = 2
+frame = 3
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -61,6 +61,7 @@ shape = SubResource( 7 )
 
 [node name="HurtBox" parent="." instance=ExtResource( 3 )]
 collision_layer = 8
+show_hit_effect = true
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2( 0, -14.311 )

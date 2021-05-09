@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 # Constants
 # Movement
-const MAX_SPEED : float = 80.0
-const ROLL_SPEED : float = MAX_SPEED * 1.4
-const ACCELERATION : float = 600.0
-const FRICTION : float = 600.0
+export var MAX_SPEED : float = 80.0
+export var ROLL_SPEED : float = MAX_SPEED * 1.4
+export var ACCELERATION : float = 600.0
+export var FRICTION : float = 600.0
 
 enum {
 	MOVE,
@@ -16,7 +16,7 @@ enum {
 # vars
 var current_state = MOVE 
 var velocity : Vector2 = Vector2.ZERO
-var velocity_roll : Vector2 = Vector2.LEFT
+var velocity_roll : Vector2 = Vector2.DOWN
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer
 onready var animation_tree : AnimationTree = $AnimationTree
