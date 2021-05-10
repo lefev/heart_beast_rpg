@@ -62,7 +62,7 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "Animation"
-frame = 1
+frame = 4
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -101,13 +101,11 @@ shape = SubResource( 10 )
 shape = SubResource( 11 )
 
 [node name="WanderController" parent="." instance=ExtResource( 9 )]
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="HurtBox"]
-
 [editable path="DetectionZone"]
-
 [editable path="HitBox"]
-
 [editable path="SoftCollision"]

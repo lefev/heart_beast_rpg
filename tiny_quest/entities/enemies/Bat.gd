@@ -25,6 +25,7 @@ var knockback = Vector2.ZERO
 # exports
 export var acceleration = 500
 export var friction = 200
+export var wander_distance = 4
 
 func _ready() -> void:
 	randomize()
@@ -38,24 +39,21 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 			seek_player()
 			if wander_controller.get_time_left() == 0:
-				current_state = pick_random_state([IDLE, WANDER])
-				wander_controller.set_timer(rand_range(1, 3))
+				update_random_state()
+			
 		WANDER:
+			seek_player()
 			if wander_controller.get_time_left() == 0:
-				current_state = pick_random_state([IDLE, WANDER])
-				wander_controller.set_timer(rand_range(1, 3))
+				update_random_state()
+				accelerate_towards(wander_controller.target_position, delta)
 				
-				var direction = global_position.direction_to(wander_controller.target_position)
-				velocity = velocity.move_toward(direction * stats.max_speed, acceleration * delta)
-				
-				if global_position.distance_to(wander_controller.target_position) <= 4:
-					current_state = pick_random_state([IDLE, WANDER])
-					wander_controller.set_timer(rand_range(1, 3))
+				if global_position.distance_to(wander_controller.target_position) <= wander_distance:
+					update_random_state()
+			
 		CHASE:
 			var player = detection_zone.player
 			if player != null:
-				var direction = global_position.direction_to(player.global_position)
-				velocity = velocity.move_toward(direction * stats.max_speed, acceleration * delta)
+				accelerate_towards(player.global_position, delta)
 			else:
 				current_state = IDLE
 			
@@ -69,6 +67,16 @@ func _physics_process(delta: float) -> void:
 func pick_random_state(state_list : Array):
 	state_list.shuffle()
 	return state_list.pop_front()
+
+
+func update_random_state():
+	current_state = pick_random_state([IDLE, WANDER])
+	wander_controller.start_wander_timer(rand_range(1, 3))
+
+
+func accelerate_towards(point, delta):
+	var direction = global_position.direction_to(point)
+	velocity = velocity.move_toward(direction * stats.max_speed, acceleration * delta)
 
 
 func seek_player() -> void:
