@@ -37,9 +37,9 @@ func _physics_process(delta: float) -> void:
 		MOVE:
 			move_state(delta)
 		ROLL:
-			roll_state(delta)
+			roll_state()
 		ATTACK:
-			attack_state(delta)
+			attack_state()
 
 
 func _get_movement_input() -> Vector2:
@@ -80,14 +80,14 @@ func roll_animation_finished() -> void:
 	current_state = MOVE
 
 
-func roll_state(_delta : float) -> void:
+func roll_state() -> void:
 	velocity = velocity_roll * ROLL_SPEED
 	animation_state.travel("roll")
 	hurtbox.invincible = true
 	move()
 	
 
-func attack_state(_delta : float) -> void:
+func attack_state() -> void:
 	# Stop sliding while attacking
 	velocity = Vector2.ZERO
 	animation_state.travel("attack")
