@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://entities/assets/shadows/small_shadow.png" type="Texture" id=1]
 [ext_resource path="res://entities/enemies/bat.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://area2ds/hit_boxes/HitBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://area2ds/SoftCollision.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/enemies/WanderController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://entities/assets/shaders/BlinkShader.tres" type="Material" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -54,14 +55,48 @@ radius = 5.63456
 [sub_resource type="CircleShape2D" id=11]
 radius = 5.8295
 
+[sub_resource type="Animation" id=12]
+resource_name = "End"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 17
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 10 )
 frames = SubResource( 6 )
 animation = "Animation"
+frame = 4
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -101,7 +136,13 @@ shape = SubResource( 11 )
 
 [node name="WanderController" parent="." instance=ExtResource( 9 )]
 
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/End = SubResource( 12 )
+anims/Start = SubResource( 13 )
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="invincibility_ended" from="HurtBox" to="." method="_on_HurtBox_invincibility_ended"]
+[connection signal="invincibility_started" from="HurtBox" to="." method="_on_HurtBox_invincibility_started"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 
 [editable path="HurtBox"]

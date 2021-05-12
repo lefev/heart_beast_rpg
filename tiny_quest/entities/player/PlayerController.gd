@@ -20,6 +20,7 @@ var velocity_roll : Vector2 = Vector2.DOWN
 var stats = PlayerStats
 
 onready var animation_player : AnimationPlayer = $AnimationPlayer
+onready var blink_animation_player : AnimationPlayer = $BlinkAnimationPlayer
 onready var animation_tree : AnimationTree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $HitboxPivot/SwordHitBox
@@ -84,7 +85,6 @@ func roll_animation_finished() -> void:
 func roll_state() -> void:
 	velocity = velocity_roll * ROLL_SPEED
 	animation_state.travel("roll")
-	hurtbox.invincible = true
 	move()
 	
 
@@ -111,3 +111,10 @@ func _on_HurtBox_area_entered(_area: Area2D) -> void:
 	var hurt_sound_instance = hurt_sound.instance()
 	get_tree().current_scene.add_child(hurt_sound_instance)
 	
+
+func _on_HurtBox_invincibility_started() -> void:
+	blink_animation_player.play("Start")
+
+
+func _on_HurtBox_invincibility_ended() -> void:
+	blink_animation_player.play("End")

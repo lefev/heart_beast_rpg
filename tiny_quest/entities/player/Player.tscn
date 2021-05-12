@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://entities/player/assets/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/PlayerController.gd" type="Script" id=2]
@@ -8,13 +8,13 @@
 [ext_resource path="res://entities/assets/shadows/medium_shadow.png" type="Texture" id=6]
 [ext_resource path="res://music_and_sound/swipe.wav" type="AudioStream" id=7]
 [ext_resource path="res://music_and_sound/evade.wav" type="AudioStream" id=8]
+[ext_resource path="res://entities/assets/shaders/BlinkShader.tres" type="Material" id=9]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 3.03088
 height = 4.22695
 
-[sub_resource type="Animation" id=2]
-resource_name = "attack_down"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -81,8 +81,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "attack_left"
+[sub_resource type="Animation" id=5]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -149,7 +148,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -216,8 +215,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "attack_up"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -284,7 +282,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -300,7 +298,7 @@ tracks/0/keys = {
 "values": [ 18 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -316,7 +314,7 @@ tracks/0/keys = {
 "values": [ 12 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -332,7 +330,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -348,8 +346,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "roll_down"
+[sub_resource type="Animation" id=12]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -392,8 +389,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "roll_left"
+[sub_resource type="Animation" id=13]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -436,8 +432,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "roll_right"
+[sub_resource type="Animation" id=14]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -480,8 +475,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "roll_up"
+[sub_resource type="Animation" id=15]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -524,7 +518,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=16]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -540,7 +534,7 @@ tracks/0/keys = {
 "values": [ 19, 20, 21, 22, 23, 18 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=17]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -556,7 +550,7 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 12 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=18]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -572,7 +566,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 0 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=19]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -588,109 +582,105 @@ tracks/0/keys = {
 "values": [ 8, 8, 9, 10, 11, 6 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "attack_left"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "attack_right"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=22]
 animation = "attack_up"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=23]
 animation = "attack_down"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=22]
-blend_point_0/node = SubResource( 18 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=24]
+blend_point_0/node = SubResource( 20 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 19 )
+blend_point_1/node = SubResource( 21 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 20 )
+blend_point_2/node = SubResource( 22 )
 blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 21 )
+blend_point_3/node = SubResource( 23 )
 blend_point_3/pos = Vector2( 0, 1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=26]
 animation = "idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=27]
 animation = "idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "idle_up"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=27]
-blend_point_0/node = SubResource( 23 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=29]
+blend_point_0/node = SubResource( 25 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 24 )
+blend_point_1/node = SubResource( 26 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 25 )
+blend_point_2/node = SubResource( 27 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 26 )
+blend_point_3/node = SubResource( 28 )
 blend_point_3/pos = Vector2( 0, -1.1 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=30]
 animation = "roll_down"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=31]
 animation = "roll_up"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=32]
 animation = "roll_left"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "roll_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=32]
-blend_point_0/node = SubResource( 28 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=34]
+blend_point_0/node = SubResource( 30 )
 blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 29 )
+blend_point_1/node = SubResource( 31 )
 blend_point_1/pos = Vector2( 0, -1.1 )
-blend_point_2/node = SubResource( 30 )
+blend_point_2/node = SubResource( 32 )
 blend_point_2/pos = Vector2( -1, 0 )
-blend_point_3/node = SubResource( 31 )
+blend_point_3/node = SubResource( 33 )
 blend_point_3/pos = Vector2( 1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id=33]
-animation = "run_left"
-
-[sub_resource type="AnimationNodeAnimation" id=34]
-animation = "run_down"
 
 [sub_resource type="AnimationNodeAnimation" id=35]
-animation = "run_up"
+animation = "run_left"
 
 [sub_resource type="AnimationNodeAnimation" id=36]
+animation = "run_down"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "run_up"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "run_right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=37]
-blend_point_0/node = SubResource( 33 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=39]
+blend_point_0/node = SubResource( 35 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 34 )
+blend_point_1/node = SubResource( 36 )
 blend_point_1/pos = Vector2( 0, 1.1 )
-blend_point_2/node = SubResource( 35 )
+blend_point_2/node = SubResource( 37 )
 blend_point_2/pos = Vector2( 0, -1.1 )
-blend_point_3/node = SubResource( 36 )
+blend_point_3/node = SubResource( 38 )
 blend_point_3/pos = Vector2( 1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
@@ -700,27 +690,62 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
-[sub_resource type="AnimationNodeStateMachine" id=44]
-states/attack/node = SubResource( 22 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachine" id=46]
+states/attack/node = SubResource( 24 )
 states/attack/position = Vector2( -762, -183 )
-states/idle/node = SubResource( 27 )
+states/idle/node = SubResource( 29 )
 states/idle/position = Vector2( -762, -60 )
-states/roll/node = SubResource( 32 )
+states/roll/node = SubResource( 34 )
 states/roll/position = Vector2( -762, 57 )
-states/run/node = SubResource( 37 )
+states/run/node = SubResource( 39 )
 states/run/position = Vector2( -564, -60 )
-transitions = [ "idle", "run", SubResource( 38 ), "run", "idle", SubResource( 39 ), "idle", "attack", SubResource( 40 ), "attack", "idle", SubResource( 41 ), "idle", "roll", SubResource( 42 ), "roll", "idle", SubResource( 43 ) ]
+transitions = [ "idle", "run", SubResource( 40 ), "run", "idle", SubResource( 41 ), "idle", "attack", SubResource( 42 ), "attack", "idle", SubResource( 43 ), "idle", "roll", SubResource( 44 ), "roll", "idle", SubResource( 45 ) ]
 start_node = "idle"
 graph_offset = Vector2( -1309.7, -132 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=47]
 
-[sub_resource type="CircleShape2D" id=46]
+[sub_resource type="CircleShape2D" id=48]
 radius = 15.6616
 
-[sub_resource type="CapsuleShape2D" id=47]
+[sub_resource type="CapsuleShape2D" id=49]
 radius = 5.57878
 height = 8.741
+
+[sub_resource type="Animation" id=50]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -731,6 +756,7 @@ ROLL_SPEED = 112.0
 texture = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 9 )
 position = Vector2( 0, -10 )
 texture = ExtResource( 1 )
 hframes = 60
@@ -738,30 +764,30 @@ frame = 46
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack_down = SubResource( 2 )
-anims/attack_left = SubResource( 3 )
-anims/attack_right = SubResource( 4 )
-anims/attack_up = SubResource( 5 )
-anims/idle_down = SubResource( 6 )
-anims/idle_left = SubResource( 7 )
-anims/idle_right = SubResource( 8 )
-anims/idle_up = SubResource( 9 )
-anims/roll_down = SubResource( 10 )
-anims/roll_left = SubResource( 11 )
-anims/roll_right = SubResource( 12 )
-anims/roll_up = SubResource( 13 )
-anims/run_down = SubResource( 14 )
-anims/run_left = SubResource( 15 )
-anims/run_right = SubResource( 16 )
-anims/run_up = SubResource( 17 )
+anims/attack_down = SubResource( 4 )
+anims/attack_left = SubResource( 5 )
+anims/attack_right = SubResource( 6 )
+anims/attack_up = SubResource( 7 )
+anims/idle_down = SubResource( 8 )
+anims/idle_left = SubResource( 9 )
+anims/idle_right = SubResource( 10 )
+anims/idle_up = SubResource( 11 )
+anims/roll_down = SubResource( 12 )
+anims/roll_left = SubResource( 13 )
+anims/roll_right = SubResource( 14 )
+anims/roll_up = SubResource( 15 )
+anims/run_down = SubResource( 16 )
+anims/run_left = SubResource( 17 )
+anims/run_right = SubResource( 18 )
+anims/run_up = SubResource( 19 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 44 )
+tree_root = SubResource( 46 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 45 )
+parameters/playback = SubResource( 47 )
 parameters/attack/blend_position = Vector2( 0, 1 )
 parameters/idle/blend_position = Vector2( 0, 1 )
 parameters/roll/blend_position = Vector2( 0, 1 )
@@ -780,7 +806,7 @@ script = ExtResource( 4 )
 damage = 3
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitBox" index="0"]
-shape = SubResource( 46 )
+shape = SubResource( 48 )
 disabled = true
 
 [node name="HurtBox" parent="." instance=ExtResource( 5 )]
@@ -788,12 +814,18 @@ collision_layer = 4
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2( -0.396851, -8.4126 )
-shape = SubResource( 47 )
+shape = SubResource( 49 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/End = SubResource( 50 )
+anims/Start = SubResource( 51 )
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="invincibility_ended" from="HurtBox" to="." method="_on_HurtBox_invincibility_ended"]
+[connection signal="invincibility_started" from="HurtBox" to="." method="_on_HurtBox_invincibility_started"]
 
 [editable path="HitboxPivot/SwordHitBox"]
 [editable path="HurtBox"]
