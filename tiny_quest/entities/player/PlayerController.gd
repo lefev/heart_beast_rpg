@@ -104,8 +104,8 @@ func move() -> void:
 	velocity = move_and_slide(velocity)
 
 
-func _on_HurtBox_area_entered(_area: Area2D) -> void:
-	stats.health -= 1
+func _on_HurtBox_area_entered(area: Area2D) -> void:
+	stats.health -= area.damage
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()
 	var hurt_sound_instance = hurt_sound.instance()
