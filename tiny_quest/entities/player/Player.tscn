@@ -781,6 +781,7 @@ damage = 3
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitBox" index="0"]
 shape = SubResource( 46 )
+disabled = true
 
 [node name="HurtBox" parent="." instance=ExtResource( 5 )]
 collision_layer = 4

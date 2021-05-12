@@ -24,6 +24,7 @@ onready var animation_tree : AnimationTree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var sword_hitbox : Area2D = $HitboxPivot/SwordHitBox
 onready var hurtbox = $HurtBox
+const hurt_sound = preload("res://music_and_sound/PlayerHurtSound.tscn")
 
 
 func _ready()  -> void:
@@ -107,3 +108,6 @@ func _on_HurtBox_area_entered(_area: Area2D) -> void:
 	stats.health -= 1
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()
+	var hurt_sound_instance = hurt_sound.instance()
+	get_tree().current_scene.add_child(hurt_sound_instance)
+	
