@@ -4,13 +4,14 @@ onready var fruitbat = preload("res://entities/enemies/Bat.tscn")
 onready var timer = $SpawnTimer
 onready var spawn_point = $SpawnPoint
 
-export(int) var spawn_timer = 5
+export(float) var spawn_timer_end = 5
+export(float) var spawn_timer_begin = 1
 export(int) var max_spawned = 5
 var currently_spawned = 0
 
 
 func _ready() -> void:
-	timer.start(spawn_timer)
+	timer.start(rand_range(spawn_timer_begin, spawn_timer_end))
 
 
 func spawn_fruitbat():
@@ -25,9 +26,8 @@ func spawn_fruitbat():
 
 func _on_fruitbat_death():
 	currently_spawned -= 1
-	print_debug(currently_spawned)
 
 
 func _on_SpawnTimer_timeout() -> void:
 	spawn_fruitbat()
-	timer.start(spawn_timer)
+	timer.start(rand_range(spawn_timer_begin, spawn_timer_end))
