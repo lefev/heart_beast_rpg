@@ -28,6 +28,8 @@ export var acceleration = 500
 export var friction = 200
 export var wander_distance = 4
 
+signal remove_fruitbat
+
 func _ready() -> void:
 	randomize()
 
@@ -97,6 +99,7 @@ func _on_Stats_no_health() -> void:
 	var death_animation_instance = death_animation.instance()
 	get_parent().add_child(death_animation_instance)
 	death_animation_instance.global_position = global_position
+	emit_signal("remove_fruitbat")
 
 
 func _on_HurtBox_invincibility_ended() -> void:

@@ -47,7 +47,7 @@ radius = 7.28569
 height = 4.25651
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 49.7465
+radius = 99.1434
 
 [sub_resource type="CircleShape2D" id=10]
 radius = 5.63456
@@ -116,7 +116,6 @@ shape = SubResource( 8 )
 [node name="Stats" parent="." instance=ExtResource( 5 )]
 
 [node name="DetectionZone" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [node name="CollisionShape2D" parent="DetectionZone" index="0"]
 modulate = Color( 1, 1, 1, 0.235294 )
