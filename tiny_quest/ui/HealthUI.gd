@@ -3,7 +3,7 @@ extends Control
 var hearts = 4 setget set_hearts
 var max_hearts = 4 setget set_max_hearts
 
-const heart_size = 15
+const heart_size = 32
 onready var heart_full : TextureRect = $HeartUIFull
 onready var heart_empty : TextureRect  = $HeartUIEmpty
 onready var stats = PlayerStats
