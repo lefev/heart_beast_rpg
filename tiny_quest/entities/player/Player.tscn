@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://entities/player/assets/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/PlayerController.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://music_and_sound/swipe.wav" type="AudioStream" id=7]
 [ext_resource path="res://music_and_sound/evade.wav" type="AudioStream" id=8]
 [ext_resource path="res://entities/assets/shaders/BlinkShader.tres" type="Material" id=9]
+[ext_resource path="res://entities/player/InteractionArea.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.03088
@@ -747,7 +748,11 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="CircleShape2D" id=50]
+radius = 20.0
+
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 0.176777, -2.91682 )
 collision_layer = 2
 script = ExtResource( 2 )
 ROLL_SPEED = 112.0
@@ -823,9 +828,18 @@ stream = ExtResource( 7 )
 anims/End = SubResource( 48 )
 anims/Start = SubResource( 49 )
 
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2( 0, -8 )
+shape = SubResource( 50 )
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="invincibility_ended" from="HurtBox" to="." method="_on_HurtBox_invincibility_ended"]
 [connection signal="invincibility_started" from="HurtBox" to="." method="_on_HurtBox_invincibility_started"]
+[connection signal="area_entered" from="InteractionArea" to="InteractionArea" method="_on_InteractionArea_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="InteractionArea" method="_on_InteractionArea_area_exited"]
 
 [editable path="HitboxPivot/SwordHitBox"]
 [editable path="HurtBox"]
