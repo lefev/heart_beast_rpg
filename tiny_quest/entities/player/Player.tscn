@@ -829,6 +829,8 @@ anims/End = SubResource( 48 )
 anims/Start = SubResource( 49 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
 script = ExtResource( 10 )
 
 [node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
